@@ -2,14 +2,16 @@ module Trap (trap, safeTrap, isCatchable) where
 
 import Cover (cover)
 import Flea (Flea)
-import ListX (samePlaces)
+import ListX (Index, samePlaces)
 import Point (Point, vecMult)
 import Nat (nats)
 
-trap :: Flea -> [Integer]
+type Time = Index
+
+trap :: Flea -> [Time]
 trap = samePlaces path
 
-safeTrap :: Flea -> Maybe Integer
+safeTrap :: Flea -> Maybe Time
 safeTrap flea = case trap flea of
     (i1 : i2 : _) -> Just i2
     [i]           -> Nothing

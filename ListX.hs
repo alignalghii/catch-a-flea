@@ -1,6 +1,6 @@
 module ListX where
 
-import Nat (nats)
+import Nat (Nat, nats)
 
 isPrefixOf ::  Eq a => [a] -> [a] -> Bool
 isPrefixOf []    _  = True
@@ -13,6 +13,8 @@ isSubsetOf as bs = all (flip elem bs) as
 descartes :: [a] -> [b] -> [(a, b)]
 descartes as bs = as >>= flip map bs . (,)
 
-samePlaces :: Eq a => [a] -> [a] -> [Integer]
+type Index = Nat
+
+samePlaces :: Eq a => [a] -> [a] -> [Index]
 samePlaces as bs = let flags = zipWith (==) as bs  
                    in map fst $ filter snd $ zip nats flags
